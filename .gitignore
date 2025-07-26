@@ -5,9 +5,9 @@ fonts/
 font-awesome/
 
 # Database files
-DATABASE FILE/
-*.sql
-*.db
+# DATABASE FILE/
+# *.sql
+# *.db
 
 # Dependencies
 node_modules/
