@@ -1,0 +1,41 @@
+# Images and media files
+images/
+tryon_results/
+fonts/
+font-awesome/
+
+# Database files
+DATABASE FILE/
+*.sql
+*.db
+
+# Dependencies
+node_modules/
+vendor/
+stripe-php/
+
+# Logs
+*.log
+error_log
+
+# Temporary files
+*.tmp
+*.temp
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.vscode/settings.json.bak
+*.swp
+*.swo
+
+# PHP specific
+composer.lock

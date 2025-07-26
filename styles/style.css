@@ -1,0 +1,804 @@
+/* Reset and base styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Modern Product Details Styling - Complete Override */
+.product-detail-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 30px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Override Bootstrap row margins */
+.product-detail-container .row {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.product-detail-container .col-md-6 {
+  padding: 0 15px;
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+/* Product Images Section */
+.product-images {
+  position: relative;
+  width: 100%;
+}
+
+.main-image {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  border-radius: 15px;
+  border: 2px solid #f0f0f0;
+  transition: all 0.3s ease;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.main-image:hover {
+  transform: scale(1.02);
+  border-color: #ff6b35;
+}
+
+.thumbnail-images {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 10px 0;
+  scrollbar-width: thin;
+  scrollbar-color: #ddd transparent;
+}
+
+.thumbnail-images::-webkit-scrollbar {
+  height: 8px;
+}
+
+.thumbnail-images::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.thumbnail-images::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+.thumbnail {
+  width: 85px;
+  height: 85px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 3px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.thumbnail:hover,
+.thumbnail.active {
+  border-color: #ff6b35;
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(255, 107, 53, 0.4);
+}
+
+/* Product Info Section */
+.product-info {
+  padding-left: 40px;
+  height: 100%;
+}
+
+.product-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.product-rating {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.stars {
+  color: #ffa500;
+  font-size: 18px;
+  display: flex;
+  gap: 2px;
+}
+
+.rating-text {
+  color: #7f8c8d;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* Price Section */
+.price-section {
+  margin-bottom: 30px;
+  padding: 20px;
+  background: linear-gradient(135deg, #fff5f2 0%, #ffe8e1 100%);
+  border-radius: 15px;
+  border-left: 5px solid #ff6b35;
+  position: relative;
+}
+
+.current-price {
+  font-size: 36px;
+  font-weight: 800;
+  color: #ff6b35;
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.original-price {
+  font-size: 22px;
+  color: #95a5a6;
+  text-decoration: line-through;
+  margin-right: 15px;
+  vertical-align: top;
+  margin-top: 8px;
+  display: inline-block;
+}
+
+.discount-badge {
+  background: linear-gradient(135deg, #ff6b35 0%, #e55a2b 100%);
+  color: white;
+  padding: 8px 15px;
+  border-radius: 25px;
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 8px;
+}
+
+/* Variant Sections */
+.variant-section {
+  margin-bottom: 30px;
+  padding: 25px;
+  background: #fafbfc;
+  border-radius: 15px;
+  border: 2px solid #ecf0f1;
+  transition: all 0.3s ease;
+}
+
+.variant-section:hover {
+  border-color: #ff6b35;
+  background: #fff;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.1);
+}
+
+.variant-label {
+  font-weight: 700;
+  margin-bottom: 18px;
+  color: #2c3e50;
+  font-size: 18px;
+}
+
+/* Color Options */
+.color-options {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.color-option {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 4px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.color-option:hover {
+  border-color: #34495e;
+  transform: scale(1.2);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.color-option.selected {
+  border-color: #34495e;
+  transform: scale(1.2);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.color-option.selected::after {
+  content: "✓";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Size Options */
+.size-options {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.size-option {
+  padding: 15px 20px;
+  border: 3px solid #bdc3c7;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  min-width: 60px;
+  text-align: center;
+  background: white;
+  font-size: 15px;
+  color: #2c3e50;
+}
+
+.size-option:hover {
+  border-color: #ff6b35;
+  background: #fff5f2;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(255, 107, 53, 0.3);
+}
+
+.size-option.selected {
+  border-color: #ff6b35;
+  background: #ff6b35;
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(255, 107, 53, 0.5);
+}
+
+.size-option.unavailable {
+  background: #ecf0f1;
+  color: #95a5a6;
+  cursor: not-allowed;
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+/* Quantity Selector */
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: white;
+  padding: 12px;
+  border-radius: 10px;
+  border: 2px solid #ecf0f1;
+  width: fit-content;
+}
+
+.quantity-btn {
+  width: 45px;
+  height: 45px;
+  border: 2px solid #bdc3c7;
+  background: white;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2c3e50;
+}
+
+.quantity-btn:hover {
+  background: #ff6b35;
+  color: white;
+  border-color: #ff6b35;
+  transform: scale(1.1);
+}
+
+.quantity-input {
+  width: 70px;
+  height: 45px;
+  text-align: center;
+  border: 2px solid #bdc3c7;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 15px;
+  margin: 35px 0;
+}
+
+.btn-add-cart {
+  flex: 1;
+  background: linear-gradient(135deg, #ff6b35 0%, #e55a2b 100%);
+  color: white;
+  border: none;
+  padding: 18px 35px;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn-add-cart:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(255, 107, 53, 0.6);
+}
+
+.btn-add-cart:active {
+  transform: translateY(-2px);
+}
+
+.btn-wishlist {
+  padding: 18px 25px;
+  border: 3px solid #ff6b35;
+  background: white;
+  color: #ff6b35;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-wishlist:hover {
+  background: #ff6b35;
+  color: white;
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+}
+
+/* Product Features */
+.product-features {
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 2px solid #ecf0f1;
+}
+
+.feature-tabs {
+  display: flex;
+  gap: 25px;
+  margin-bottom: 25px;
+  border-bottom: 2px solid #ecf0f1;
+  overflow-x: auto;
+}
+
+.tab-btn {
+  padding: 15px 30px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-weight: 600;
+  color: #7f8c8d;
+  border-bottom: 4px solid transparent;
+  transition: all 0.3s ease;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+.tab-btn:hover {
+  color: #ff6b35;
+}
+
+.tab-btn.active {
+  color: #ff6b35;
+  border-bottom-color: #ff6b35;
+  font-weight: 700;
+}
+
+.tab-content {
+  padding: 30px 0;
+  line-height: 1.8;
+  color: #2c3e50;
+  font-size: 16px;
+}
+
+.tab-pane {
+  display: none;
+}
+
+.tab-pane.active {
+  display: block;
+  animation: fadeIn 0.4s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Stock Info */
+.stock-info {
+  background: linear-gradient(135deg, #e8f5e8 0%, #d4edda 100%);
+  padding: 18px 25px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  border-left: 5px solid #28a745;
+  font-weight: 600;
+  font-size: 15px;
+  color: #155724;
+}
+
+.stock-info.low-stock {
+  background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+  border-left-color: #ffc107;
+  color: #856404;
+}
+
+.stock-info.out-of-stock {
+  background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+  border-left-color: #dc3545;
+  color: #721c24;
+}
+
+/* Breadcrumb */
+.breadcrumb-modern {
+  background: none;
+  padding: 0;
+  margin-bottom: 30px;
+  font-size: 15px;
+  color: #7f8c8d;
+  font-weight: 500;
+}
+
+.breadcrumb-modern a {
+  color: #7f8c8d;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.breadcrumb-modern a:hover {
+  color: #ff6b35;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .product-detail-container {
+    margin: 10px;
+    padding: 20px;
+    border-radius: 10px;
+  }
+
+  .product-detail-container .col-md-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .product-info {
+    padding-left: 0;
+    margin-top: 30px;
+  }
+
+  .product-title {
+    font-size: 26px;
+  }
+
+  .current-price {
+    font-size: 30px;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .btn-add-cart,
+  .btn-wishlist {
+    width: 100%;
+    text-align: center;
+  }
+
+  .main-image {
+    height: 350px;
+  }
+
+  .thumbnail {
+    width: 70px;
+    height: 70px;
+  }
+
+  .feature-tabs {
+    gap: 15px;
+  }
+
+  .tab-btn {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+
+  .variant-section {
+    padding: 20px;
+  }
+
+  .color-option {
+    width: 45px;
+    height: 45px;
+  }
+
+  .size-option {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-title {
+    font-size: 22px;
+  }
+
+  .current-price {
+    font-size: 26px;
+  }
+
+  .original-price {
+    font-size: 18px;
+  }
+
+  .main-image {
+    height: 280px;
+  }
+
+  .thumbnail {
+    width: 60px;
+    height: 60px;
+  }
+
+  .color-option {
+    width: 40px;
+    height: 40px;
+  }
+
+  .size-option {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+
+  .quantity-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .quantity-input {
+    width: 60px;
+    height: 40px;
+    font-size: 16px;
+  }
+}
+
+/* Admin Panel Styling */
+.color-variant-section {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 5px;
+  background: #f9f9f9;
+}
+
+.color-input {
+  width: 50px;
+  height: 30px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.variant-images-section {
+  border: 1px solid #eee;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 3px;
+  background: white;
+}
+
+.size-management {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 5px;
+  background: #f0f8ff;
+}
+
+.size-input-group {
+  display: flex;
+  gap: 10px;
+  margin: 5px 0;
+  align-items: center;
+}
+
+.size-input-group input {
+  flex: 1;
+}
+
+.size-type-selector {
+  margin-bottom: 15px;
+}
+
+/* Loading animations */
+.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid #ff6b35;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* UI FIXES - Remove loading animations and focus outlines */
+
+/* Disable all loading animations and spinners */
+.loading,
+.loading *,
+#loading,
+.spinner,
+.spinner *,
+[class*="loading"],
+[class*="spinner"] {
+  display: none !important;
+  animation: none !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+/* Hide any wait elements */
+#wait,
+.wait,
+[id*="wait"],
+[class*="wait"] {
+  display: none !important;
+}
+
+/* Remove blue focus outlines from all interactive elements */
+*:focus,
+*:active,
+button:focus,
+button:active,
+.btn:focus,
+.btn:active,
+.btn.active,
+a:focus,
+a:active,
+input:focus,
+select:focus,
+textarea:focus,
+.form-control:focus,
+.checkbox:focus,
+.radio:focus,
+label:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: inherit !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+/* Remove Bootstrap button focus styles */
+.btn-primary:focus,
+.btn-primary.focus,
+.btn-primary:active,
+.btn-secondary:focus,
+.btn-secondary.focus,
+.btn-secondary:active,
+.btn-success:focus,
+.btn-success.focus,
+.btn-success:active,
+.btn-danger:focus,
+.btn-danger.focus,
+.btn-danger:active,
+.btn-warning:focus,
+.btn-warning.focus,
+.btn-warning:active,
+.btn-info:focus,
+.btn-info.focus,
+.btn-info:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Remove webkit focus ring */
+input[type="button"]:focus,
+input[type="submit"]:focus,
+input[type="reset"]:focus,
+input[type="checkbox"]:focus,
+input[type="radio"]:focus,
+button:focus {
+  outline: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+}
+
+/* Disable CSS animations that might cause loading effects */
+*,
+*::before,
+*::after {
+  animation-play-state: paused !important;
+}
+
+/* Re-enable only safe animations */
+.fade,
+.collapse,
+.slideToggle {
+  animation-play-state: running !important;
+}
+
+/* Specifically disable Font Awesome spin animations */
+.fa-spin,
+.fa-pulse,
+.icon-spin,
+.icon-pulse {
+  -webkit-animation: none !important;
+  -moz-animation: none !important;
+  -o-animation: none !important;
+  animation: none !important;
+}
+
+/* Disable any rotating or spinning elements */
+[class*="spin"],
+[class*="rotate"],
+[class*="loading"] {
+  -webkit-animation: none !important;
+  -moz-animation: none !important;
+  -o-animation: none !important;
+  animation: none !important;
+  -webkit-transform: none !important;
+  -moz-transform: none !important;
+  -ms-transform: none !important;
+  -o-transform: none !important;
+  transform: none !important;
+}
