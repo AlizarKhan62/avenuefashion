@@ -13,8 +13,8 @@
   <link href="styles/backend.css" rel="stylesheet">
   <link href="styles/style.css" rel="stylesheet">
   <link href="styles/responsive.css" rel="stylesheet">
-  <link href="styles/login.css" rel="stylesheet">
+  <!-- <link href="styles/login.css" rel="stylesheet"> -->
 
   <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="styles/no-animations.css" rel="stylesheet">
+  <!-- <link href="styles/no-animations.css" rel="stylesheet"> -->
   <script src="js/responsive.js" defer></script>

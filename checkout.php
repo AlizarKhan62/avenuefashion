@@ -25,7 +25,7 @@ include("includes/main.php");
                 if(!isset($_SESSION['customer_email'])){
                     include("customer/customer_login.php");
                 } else {
-                    echo '<div class="col-lg-9 mx-auto">';
+                    echo '<div class="col-lg-8 mx-auto" style="max-width: 600px; display: flex; flex-direction: column; align-items: center;">';
                     
                     // Add Virtual Try-On section before payment options
                     if(isset($_SESSION['customer_email'])) {

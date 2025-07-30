@@ -128,11 +128,11 @@ include("my_orders.php");
 
 }
 
-if(isset($_GET['pay_offline'])) {
+// if(isset($_GET['pay_offline'])) {
 
-include("pay_offline.php");
+// include("pay_offline.php");
 
-}
+// }
 
 if(isset($_GET['edit_account'])) {
 

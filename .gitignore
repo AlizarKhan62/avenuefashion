@@ -1,26 +1,33 @@
-# Images and media files
-images/
-tryon_results/
-fonts/
-font-awesome/
+# Security - Never commit these files
+config/api_config.php
+.env
+*.key
+*.pem
 
-# Database files
-# DATABASE FILE/
-# *.sql
-# *.db
-
-# Dependencies
-node_modules/
-vendor/
-stripe-php/
+# System files
+.DS_Store
+Thumbs.db
+.vscode/settings.json
 
 # Logs
 *.log
-error_log
+logs/
 
 # Temporary files
-*.tmp
-*.temp
+tmp/
+temp/
+cache/
+
+# Database backups
+
+
+# Upload directories (optional - remove if you want to track uploads)
+
+
+# IDE files
+.idea/
+*.swp
+*.swo
 *~
 
 # OS generated files
@@ -31,11 +38,3 @@ error_log
 .Trashes
 ehthumbs.db
 Thumbs.db
-
-# IDE files
-.vscode/settings.json.bak
-*.swp
-*.swo
-
-# PHP specific
-composer.lock

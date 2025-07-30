@@ -121,10 +121,10 @@ if (!function_exists('getPro')) {
     
     // Add Go to Shop button
     echo '
-    <div class="row">
-        <div class="col-md-12 text-center" style="margin: 30px 0;">
-            <a href="shop.php" class="btn btn-primary btn-lg">
-                Go to Shop
+    <div class="row" style="margin-top: 40px; margin-bottom: 40px;">
+        <div class="col-md-12 text-center">
+            <a href="shop.php" class="btn btn-primary btn-lg" style="background: linear-gradient(135deg, #ff6b35, #e55a2b) !important; border: none !important; padding: 15px 40px !important; border-radius: 50px !important; font-size: 18px !important; font-weight: 600 !important; color: white !important; text-decoration: none !important; text-transform: uppercase !important; letter-spacing: 1px !important; transition: all 0.3s ease !important; box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3) !important; display: inline-block !important;">
+                <i class="fa fa-shopping-bag"></i> Go to Shop
             </a>
         </div>
     </div>';

@@ -802,3 +802,610 @@ button:focus {
   -o-transform: none !important;
   transform: none !important;
 }
+
+/* ===============================================
+   MODERN SHOP PRODUCT GRID STYLING
+   =============================================== */
+
+/* Product Grid Container */
+#Products {
+  padding: 20px 0 !important;
+  background: transparent !important;
+}
+
+#Products .row {
+  margin: 0 -10px !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+}
+
+/* Individual Product Card - For both shop and homepage */
+.product {
+  background: #ffffff !important;
+  border: 1px solid #e8e8e8 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08) !important;
+  transition: all 0.3s ease !important;
+  margin-bottom: 30px !important;
+  overflow: hidden !important;
+  position: relative !important;
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.product:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15) !important;
+  border-color: #ff6b35 !important;
+}
+
+/* Product Column Spacing - Shop page */
+.col-md-4.col-sm-6.center-responsive {
+  padding: 0 10px !important;
+  margin-bottom: 20px !important;
+  display: flex !important;
+}
+
+/* Product Column Spacing - Homepage */
+.col-md-3.col-sm-6.single {
+  padding: 0 10px !important;
+  margin-bottom: 20px !important;
+  display: flex !important;
+}
+
+/* Product Image */
+.product img {
+  width: 100% !important;
+  height: 280px !important;
+  object-fit: cover !important;
+  border-radius: 12px 12px 0 0 !important;
+  transition: transform 0.3s ease !important;
+  display: block !important;
+}
+
+.product:hover img {
+  transform: scale(1.05) !important;
+}
+
+/* Product Text Content */
+.product .text {
+  padding: 20px !important;
+  flex-grow: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* Product Title */
+.product .text h3 {
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  color: #333 !important;
+  margin: 0 0 12px 0 !important;
+  line-height: 1.4 !important;
+  min-height: 50px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.product .text h3 a {
+  color: #333 !important;
+  text-decoration: none !important;
+  transition: color 0.3s ease !important;
+  display: block !important;
+}
+
+.product .text h3 a:hover {
+  color: #ff6b35 !important;
+  text-decoration: none !important;
+}
+
+/* Product Price */
+.product .text .price {
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  color: #ff6b35 !important;
+  margin: 0 0 20px 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.product .text .price del {
+  color: #999 !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+}
+
+/* Product Buttons */
+.product .text .buttons {
+  margin-top: auto !important;
+  display: flex !important;
+  gap: 8px !important;
+  flex-wrap: wrap !important;
+}
+
+.product .text .buttons .btn {
+  flex: 1 !important;
+  padding: 10px 15px !important;
+  border-radius: 8px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  text-align: center !important;
+  transition: all 0.3s ease !important;
+  border: none !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 5px !important;
+  min-width: 120px !important;
+}
+
+.product .text .buttons .btn-default {
+  background: #f8f9fa !important;
+  color: #333 !important;
+  border: 1px solid #e9ecef !important;
+}
+
+.product .text .buttons .btn-default:hover {
+  background: #e9ecef !important;
+  color: #000 !important;
+  transform: translateY(-1px) !important;
+}
+
+.product .text .buttons .btn-danger {
+  background: #ff6b35 !important;
+  color: white !important;
+}
+
+.product .text .buttons .btn-danger:hover {
+  background: #e55a2b !important;
+  color: white !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Product Label */
+.product .label {
+  position: absolute !important;
+  top: 15px !important;
+  right: 15px !important;
+  z-index: 10 !important;
+  text-decoration: none !important;
+}
+
+.product .label .thelabel {
+  background: #ff6b35 !important;
+  color: white !important;
+  padding: 5px 12px !important;
+  border-radius: 20px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  box-shadow: 0 2px 10px rgba(255, 107, 53, 0.3) !important;
+}
+
+.product .label.sale .thelabel {
+  background: #28a745 !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .col-md-4.col-sm-6.center-responsive,
+  .col-md-3.col-sm-6.single {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    padding: 0 5px !important;
+  }
+  
+  .product .text .buttons {
+    flex-direction: column !important;
+  }
+  
+  .product .text .buttons .btn {
+    width: 100% !important;
+    min-width: auto !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .col-md-4.col-sm-6.center-responsive {
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
+  }
+  
+  .col-md-3.col-sm-6.single {
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .col-md-4.col-sm-6.center-responsive {
+    flex: 0 0 33.333333% !important;
+    max-width: 33.333333% !important;
+  }
+  
+  .col-md-3.col-sm-6.single {
+    flex: 0 0 25% !important;
+    max-width: 25% !important;
+  }
+}
+
+/* Animation for page load */
+.product {
+  animation: fadeInUp 0.6s ease-out !important;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0 !important;
+    transform: translateY(30px) !important;
+  }
+  to {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+}
+
+/* Loading state for images */
+.product img {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%) !important;
+  background-size: 200% 100% !important;
+  animation: loading 1.5s infinite !important;
+}
+
+.product img[src]:not([src=""]) {
+  background: none !important;
+  animation: none !important;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0 !important;
+  }
+  100% {
+    background-position: -200% 0 !important;
+  }
+}
+
+/* Go to Shop button styling */
+/* .btn-primary.btn-lg {
+  display: block !important;
+  margin: 20px auto !important; 
+  background: linear-gradient(135deg, #ff6b35, #e55a2b) !important;
+  border: none !important;
+  padding: 15px 40px !important;
+  border-radius: 50px !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  color: white !important;
+  text-decoration: none !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3) !important;
+}
+
+.btn-primary.btn-lg:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 25px rgba(255, 107, 53, 0.4) !important;
+  background: linear-gradient(135deg, #e55a2b, #cc4a20) !important;
+} */
+
+
+/* Pagination styling for shop */
+.pagination {
+  display: flex !important;
+  justify-content: center !important;
+  margin: 40px 0 !important;
+}
+
+.pagination li {
+  margin: 0 3px !important;
+}
+
+.pagination li a {
+  padding: 12px 16px !important;
+  border: 1px solid #e9ecef !important;
+  color: #333 !important;
+  text-decoration: none !important;
+  border-radius: 8px !important;
+  transition: all 0.3s ease !important;
+}
+
+.pagination li a:hover {
+  background: #ff6b35 !important;
+  color: white !important;
+  border-color: #ff6b35 !important;
+}
+
+.pagination li.active a {
+  background: #ff6b35 !important;
+  color: white !important;
+  border-color: #ff6b35 !important;
+}
+
+/* ================================================
+   CRITICAL OVERRIDE - HIGHEST PRIORITY PRODUCT STYLING
+   ================================================ */
+
+/* Force override any existing product styles */
+body .product,
+html body .product,
+div .product,
+.container .product,
+.row .product {
+  background-color: #ffffff !important;
+  border: 1px solid #e0e0e0 !important;
+  border-radius: 15px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s ease !important;
+  margin-bottom: 25px !important;
+  overflow: hidden !important;
+  position: relative !important;
+  height: auto !important;
+  min-height: 450px !important;
+  display: block !important;
+}
+
+body .product:hover,
+html body .product:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15) !important;
+  border-color: #ff6b35 !important;
+}
+
+/* Product images with highest priority */
+body .product img,
+html body .product img,
+.product img.img-responsive {
+  width: 100% !important;
+  height: 250px !important;
+  object-fit: cover !important;
+  border-radius: 15px 15px 0 0 !important;
+  transition: transform 0.3s ease !important;
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body .product:hover img,
+html body .product:hover img {
+  transform: scale(1.08) !important;
+}
+
+/* Product text content */
+body .product .text,
+html body .product .text {
+  padding: 20px !important;
+  background: white !important;
+  min-height: 180px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+}
+
+/* Product titles */
+body .product .text h3,
+html body .product .text h3,
+body .product .text h3 a,
+html body .product .text h3 a {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: #333333 !important;
+  margin: 0 0 10px 0 !important;
+  line-height: 1.4 !important;
+  text-decoration: none !important;
+  display: block !important;
+  min-height: 40px !important;
+}
+
+body .product .text h3 a:hover,
+html body .product .text h3 a:hover {
+  color: #ff6b35 !important;
+  text-decoration: none !important;
+}
+
+/* Product prices */
+body .product .text .price,
+html body .product .text .price {
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  color: #ff6b35 !important;
+  margin: 10px 0 15px 0 !important;
+  display: block !important;
+}
+
+body .product .text .price del,
+html body .product .text .price del {
+  color: #999999 !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  margin-right: 8px !important;
+}
+
+/* Product buttons */
+body .product .text .buttons,
+html body .product .text .buttons {
+  display: flex !important;
+  gap: 8px !important;
+  margin-top: auto !important;
+  flex-wrap: wrap !important;
+}
+
+body .product .text .buttons .btn,
+html body .product .text .buttons .btn,
+body .product .text .buttons a.btn,
+html body .product .text .buttons a.btn {
+  flex: 1 !important;
+  padding: 10px 12px !important;
+  border-radius: 8px !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  text-align: center !important;
+  transition: all 0.3s ease !important;
+  border: none !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 5px !important;
+  min-width: 100px !important;
+  white-space: nowrap !important;
+}
+
+body .product .text .buttons .btn-default,
+html body .product .text .buttons .btn-default {
+  background: #f8f9fa !important;
+  color: #333 !important;
+  border: 1px solid #e9ecef !important;
+}
+
+body .product .text .buttons .btn-default:hover,
+html body .product .text .buttons .btn-default:hover {
+  background: #e9ecef !important;
+  color: #000 !important;
+  transform: translateY(-2px) !important;
+}
+
+body .product .text .buttons .btn-danger,
+html body .product .text .buttons .btn-danger {
+  background: #ff6b35 !important;
+  color: white !important;
+  border: 1px solid #ff6b35 !important;
+}
+
+body .product .text .buttons .btn-danger:hover,
+html body .product .text .buttons .btn-danger:hover {
+  background: #e55a2b !important;
+  color: white !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Product labels */
+body .product .label,
+html body .product .label {
+  position: absolute !important;
+  top: 10px !important;
+  right: 10px !important;
+  z-index: 20 !important;
+  text-decoration: none !important;
+}
+
+body .product .label .thelabel,
+html body .product .label .thelabel {
+  background: #ff6b35 !important;
+  color: white !important;
+  padding: 6px 12px !important;
+  border-radius: 20px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  box-shadow: 0 2px 10px rgba(255, 107, 53, 0.4) !important;
+  display: block !important;
+}
+
+body .product .label.sale .thelabel,
+html body .product .label.sale .thelabel {
+  background: #28a745 !important;
+}
+
+/* Column spacing override */
+body .col-md-4.col-sm-6.center-responsive,
+html body .col-md-4.col-sm-6.center-responsive,
+body .col-md-3.col-sm-6.single,
+html body .col-md-3.col-sm-6.single {
+  padding: 10px !important;
+  margin-bottom: 20px !important;
+}
+
+/* Container and row overrides */
+body #Products .row,
+html body #Products .row,
+body .container .row,
+html body .container .row {
+  margin: 0 -10px !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+}
+
+/* Go to Shop button */
+/* body .btn-primary.btn-lg,
+html body .btn-primary.btn-lg {
+  background: linear-gradient(135deg, #ff6b35, #e55a2b) !important;
+  border: none !important;
+  padding: 15px 30px !important;
+  border-radius: 50px !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: white !important;
+  text-decoration: none !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3) !important;
+  display: inline-block !important;
+}
+
+body .btn-primary.btn-lg:hover,
+html body .btn-primary.btn-lg:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 8px 25px rgba(255, 107, 53, 0.5) !important;
+  background: linear-gradient(135deg, #e55a2b, #cc4a20) !important;
+  color: white !important;
+  text-decoration: none !important;
+} */
+
+/* Force display block for product containers */
+body div.product,
+html body div.product {
+  display: block !important;
+}
+
+/* Responsive fixes */
+@media (max-width: 768px) {
+  body .col-md-4.col-sm-6.center-responsive,
+  html body .col-md-4.col-sm-6.center-responsive,
+  body .col-md-3.col-sm-6.single,
+  html body .col-md-3.col-sm-6.single {
+    width: 100% !important;
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+  
+  body .product .text .buttons,
+  html body .product .text .buttons {
+    flex-direction: column !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  body .col-md-4.col-sm-6.center-responsive,
+  html body .col-md-4.col-sm-6.center-responsive {
+    width: 50% !important;
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
+  }
+  
+  body .col-md-3.col-sm-6.single,
+  html body .col-md-3.col-sm-6.single {
+    width: 50% !important;
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
+  }
+}
+
+@media (min-width: 992px) {
+  body .col-md-4.col-sm-6.center-responsive,
+  html body .col-md-4.col-sm-6.center-responsive {
+    width: 33.333% !important;
+    flex: 0 0 33.333% !important;
+    max-width: 33.333% !important;
+  }
+  
+  body .col-md-3.col-sm-6.single,
+  html body .col-md-3.col-sm-6.single {
+    width: 25% !important;
+    flex: 0 0 25% !important;
+    max-width: 25% !important;
+  }
+}

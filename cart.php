@@ -65,7 +65,7 @@ include("includes/main.php");
                                     <th style="width: 10%; text-align: center;">Size</th>
                                     <th style="width: 12%; text-align: center;">Quantity</th>
                                     <th style="width: 13%; text-align: center;">Unit Price</th>
-                                    <th style="width: 8%; text-align: center;">Delete</th>
+                                    <th style="width: 8%; text-align: center;"><i class="fa fa-trash" title="Remove Item"></i></th>
                                     <th style="width: 17%; text-align: center;">Sub Total</th>
                                 </tr>
                             </thead>
@@ -201,7 +201,12 @@ include("includes/main.php");
                                         <strong>Rs <?php echo number_format($only_price, 2); ?></strong>
                                     </td>
                                     <td style="text-align: center; vertical-align: middle; width: 8%;">
-                                        <input type="checkbox" name="remove[]" value="<?php echo $cart_id; ?>" style="transform: scale(1.2);">
+                                        <a href="cart.php?remove_item=<?php echo $cart_id; ?>" 
+                                           onclick="return confirm('Are you sure you want to remove <?php echo htmlspecialchars($product_title); ?> from your cart?');"
+                                           style="color: #dc3545; text-decoration: none; font-size: 16px;"
+                                           title="Remove <?php echo htmlspecialchars($product_title); ?>">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
                                     </td>
                                     <td style="text-align: center; vertical-align: middle; width: 17%;">
                                         <strong style="color: #151413ff; font-size: 16px;">Rs <?php echo number_format($sub_total, 2); ?></strong>
@@ -329,7 +334,12 @@ include("includes/main.php");
                                     </div>
                                     <div style="display: flex; align-items: center; gap: 10px;">
                                         <label style="margin: 0; font-weight: bold;">Remove:</label>
-                                        <input type="checkbox" name="remove[]" value="<?php echo $cart_id; ?>" style="transform: scale(1.5);">
+                                        <a href="cart.php?remove_item=<?php echo $cart_id; ?>" 
+                                           onclick="return confirm('Are you sure you want to remove <?php echo htmlspecialchars($product_title); ?> from your cart?');"
+                                           style="color: #dc3545; text-decoration: none; font-size: 16px;"
+                                           title="Remove <?php echo htmlspecialchars($product_title); ?>">
+                                            <i class="fa fa-trash"></i> Delete
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -378,6 +388,7 @@ include("includes/main.php");
                     </div>
                     <?php endif; ?>
                 </form>
+                
             </div>
 
             <?php
@@ -467,6 +478,45 @@ include("includes/main.php");
                 echo "<script>window.open('cart.php','_self')</script>";
             }
 
+            // Handle single item removal via delete icon
+            if(isset($_GET['remove_item'])){
+                $remove_cart_id = (int)$_GET['remove_item'];
+                $ip_add = getRealUserIp();
+                
+                // Handle localhost IP variations
+                if($ip_add == '' || $ip_add == '127.0.0.1' || $ip_add == '::1') {
+                    $check_ip_query = "SELECT DISTINCT ip_add FROM cart LIMIT 1";
+                    $check_ip_result = mysqli_query($con, $check_ip_query);
+                    if($check_ip_result && mysqli_num_rows($check_ip_result) > 0) {
+                        $ip_row = mysqli_fetch_array($check_ip_result);
+                        $ip_add = $ip_row['ip_add'];
+                    }
+                }
+                
+                if($remove_cart_id > 0) {
+                    // Check if cart_id column exists
+                    $check_column = mysqli_query($con, "SHOW COLUMNS FROM cart LIKE 'cart_id'");
+                    
+                    if($check_column && mysqli_num_rows($check_column) > 0) {
+                        // Use cart_id column
+                        $delete_product = "DELETE FROM cart WHERE cart_id='$remove_cart_id'";
+                    } else {
+                        // Fallback to p_id column with IP
+                        $delete_product = "DELETE FROM cart WHERE p_id='$remove_cart_id' AND ip_add='$ip_add'";
+                    }
+                    
+                    $run_delete = mysqli_query($con, $delete_product);
+                    
+                    if($run_delete && mysqli_affected_rows($con) > 0) {
+                        echo "<script>alert('Item removed from cart successfully!')</script>";
+                    } else {
+                        echo "<script>alert('Error removing item from cart!')</script>";
+                    }
+                    
+                    echo "<script>window.location.href='cart.php'</script>";
+                }
+            }
+
             // Handle clear cart
             if(isset($_POST['clear_cart'])){
                 $ip_add = getRealUserIp();
@@ -483,82 +533,88 @@ include("includes/main.php");
             ?>
 
             <?php if($count > 0): ?>
-            <div id="row same-height-row">
-                <div class="col-md-3 col-sm-6">
-                    <div class="box same-height headline">
-                        <h3 class="text-center">You may like these Products</h3>
+            
+            <!-- Recommended Products Section -->
+            <!-- <div class="row" >
+                <div class="col-md-12">
+                    <div class="box">
+                        <div class="box-header text-center" >
+                            <h3 >You may like these Products</h3>
+                            <p >Recommended items based on your cart</p>
+                        </div>
+                        
+                        <div class="row" >
+                            <?php
+                            $get_products = "SELECT * FROM products ORDER BY RAND() LIMIT 0,3";
+                            $run_products = mysqli_query($con, $get_products);
+                            
+                            if($run_products) {
+                                while($row_products = mysqli_fetch_array($run_products)){
+                                    $pro_id = $row_products['product_id'];
+                                    $pro_title = $row_products['product_title'];
+                                    $pro_price = $row_products['product_price'];
+                                    $pro_img1 = $row_products['product_img1'];
+                                    $pro_label = isset($row_products['product_label']) ? $row_products['product_label'] : '';
+                                    $manufacturer_id = isset($row_products['manufacturer_id']) ? $row_products['manufacturer_id'] : 0;
+                                    $pro_url = isset($row_products['product_url']) ? $row_products['product_url'] : "details.php?pro_id=$pro_id";
+                                    
+                                    // Get manufacturer name
+                                    $manufacturer_name = "Unknown";
+                                    if($manufacturer_id > 0) {
+                                        $get_manufacturer = "SELECT * FROM manufacturers WHERE manufacturer_id='$manufacturer_id'";
+                                        $run_manufacturer = mysqli_query($con, $get_manufacturer);
+                                        if($run_manufacturer && mysqli_num_rows($run_manufacturer) > 0) {
+                                            $row_manufacturer = mysqli_fetch_array($run_manufacturer);
+                                            $manufacturer_name = $row_manufacturer['manufacturer_title'];
+                                        }
+                                    }
+                                    
+                                    $pro_psp_price = isset($row_products['product_psp_price']) ? $row_products['product_psp_price'] : 0;
+
+                                    if($pro_label == "Sale" || $pro_label == "Gift"){
+                                        $product_price = "<del> Rs " . number_format($pro_price, 2) . "</del>";
+                                        $product_psp_price = "| Rs " . number_format($pro_psp_price, 2);
+                                    } else {
+                                        $product_psp_price = "";
+                                        $product_price = "Rs " . number_format($pro_price, 2);
+                                    }
+
+                                    if($pro_label != ""){
+                                        $product_label = "
+                                        <a class='label sale' href='#' style='color:black;'>
+                                            <div class='thelabel'>$pro_label</div>
+                                            <div class='label-background'></div>
+                                        </a>";
+                                    } else {
+                                        $product_label = "";
+                                    }
+
+                                    echo "
+                                    <div class='col-md-4 col-sm-6 center-responsive'>
+                                        <div class='product recommended-product'>
+                                            <a href='$pro_url'>
+                                                <img src='admin_area/product_images/$pro_img1' class='img-responsive'>
+                                            </a>
+                                            <div class='text'>
+                                                <h3><a href='$pro_url'>$pro_title</a></h3>
+                                                <p class='price'>$product_price $product_psp_price</p>
+                                                <p class='buttons'>
+                                                    <a href='$pro_url' class='btn btn-default'>View Details</a>
+                                                    <a href='$pro_url' class='btn btn-danger'>
+                                                        <i class='fa fa-shopping-cart'></i> Add To Cart
+                                                    </a>
+                                                </p>
+                                            </div>
+                                            $product_label
+                                        </div>
+                                    </div>";
+                                }
+                            }
+                            ?>
+                        </div>
                     </div>
                 </div>
-
-                <?php
-                $get_products = "SELECT * FROM products ORDER BY RAND() LIMIT 0,3";
-                $run_products = mysqli_query($con, $get_products);
-                
-                if($run_products) {
-                    while($row_products = mysqli_fetch_array($run_products)){
-                        $pro_id = $row_products['product_id'];
-                        $pro_title = $row_products['product_title'];
-                        $pro_price = $row_products['product_price'];
-                        $pro_img1 = $row_products['product_img1'];
-                        $pro_label = isset($row_products['product_label']) ? $row_products['product_label'] : '';
-                        $manufacturer_id = isset($row_products['manufacturer_id']) ? $row_products['manufacturer_id'] : 0;
-                        $pro_url = isset($row_products['product_url']) ? $row_products['product_url'] : "details.php?pro_id=$pro_id";
-                        
-                        // Get manufacturer name
-                        $manufacturer_name = "Unknown";
-                        if($manufacturer_id > 0) {
-                            $get_manufacturer = "SELECT * FROM manufacturers WHERE manufacturer_id='$manufacturer_id'";
-                            $run_manufacturer = mysqli_query($con, $get_manufacturer);
-                            if($run_manufacturer && mysqli_num_rows($run_manufacturer) > 0) {
-                                $row_manufacturer = mysqli_fetch_array($run_manufacturer);
-                                $manufacturer_name = $row_manufacturer['manufacturer_title'];
-                            }
-                        }
-                        
-                        $pro_psp_price = isset($row_products['product_psp_price']) ? $row_products['product_psp_price'] : 0;
-
-                        if($pro_label == "Sale" || $pro_label == "Gift"){
-                            $product_price = "<del> Rs " . number_format($pro_price, 2) . "</del>";
-                            $product_psp_price = "| Rs " . number_format($pro_psp_price, 2);
-                        } else {
-                            $product_psp_price = "";
-                            $product_price = "Rs " . number_format($pro_price, 2);
-                        }
-
-                        if($pro_label != ""){
-                            $product_label = "
-                            <a class='label sale' href='#' style='color:black;'>
-                                <div class='thelabel'>$pro_label</div>
-                                <div class='label-background'></div>
-                            </a>";
-                        } else {
-                            $product_label = "";
-                        }
-
-                        echo "
-                        <div class='col-md-3 col-sm-6 center-responsive'>
-                            <div class='product'>
-                                <a href='$pro_url'>
-                                    <img src='admin_area/product_images/$pro_img1' style='width:100%; height:250px; object-fit:cover; border-radius:8px;' class='img-responsive'>
-                                </a>
-                                <div class='text'>
-                                    
-                                    <h3><a href='$pro_url'>$pro_title</a></h3>
-                                    <p class='price'>$product_price $product_psp_price</p>
-                                    <p class='buttons'>
-                                        <a href='$pro_url' class='btn btn-default'>View Details</a>
-                                        <a href='$pro_url' class='btn btn-danger'>
-                                            <i class='fa fa-shopping-cart'></i> Add To Cart
-                                        </a>
-                                    </p>
-                                </div>
-                                $product_label
-                            </div>
-                        </div>";
-                    }
-                }
-                ?>
-            </div>
+            </div> -->
             <?php endif; ?>
         </div>
 
@@ -654,19 +710,29 @@ $(document).ready(function(){
             $(this).val(10);
             quantity = 10;
         }
-        
-        // You can add AJAX here to update quantity without page reload
-        // For now, it will update when the form is submitted
     });
     
-    // Confirm before removing items
-    $('input[name="remove[]"]').change(function() {
-        if($(this).is(':checked')) {
-            if(!confirm('Are you sure you want to remove this item from your cart?')) {
-                $(this).prop('checked', false);
-            }
+    // Add hover effects for delete buttons
+    $('.btn-danger').hover(
+        function() {
+            $(this).css('transform', 'scale(1.1)');
+        },
+        function() {
+            $(this).css('transform', 'scale(1)');
         }
-    });
+    );
+    
+    // Add visual feedback when hovering over product rows
+    $('tr').hover(
+        function() {
+            if($(this).find('.btn-danger').length > 0) {
+                $(this).css('background-color', '#f8f8f8');
+            }
+        },
+        function() {
+            $(this).css('background-color', '');
+        }
+    );
 });
 </script>
 </body>

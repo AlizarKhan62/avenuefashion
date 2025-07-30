@@ -14,7 +14,7 @@ include("includes/main.php");
   <main>
     <div class="hero">
       <a href="shop.php" class="btn1">View all products
-</a>
+      </a>
     </div>
     <!-- Main -->
     <div class="wrapper">
@@ -27,7 +27,7 @@ include("includes/main.php");
     <div id="content" class="container"><!-- container Starts -->
 
     <div class="row"><!-- row Starts -->
-
+      
     <?php
 
     getPro();
